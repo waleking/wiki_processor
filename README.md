@@ -17,3 +17,8 @@ input: catToPageGraph.txt (category->sub category)
 
 output: pagerank_score.txt
 
+####rebuildTaxonomy.py
+Remove the edges that smaller pagerank-score nodes pointing to higer pagerank-score nodes. This step can make sure that the taxonomy graph is the directed acyclic graph. 
+usage : python rebuildTaxonomy.py
+input: pagerank_score.txt and taxonomyGraph.txt
+output: rebuild_taxonomyGraph.txt
