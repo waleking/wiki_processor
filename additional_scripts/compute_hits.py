@@ -12,10 +12,19 @@ def load(filename):
     return g
 
 g=load("catToPageGraph.txt")
-authoriescores,hubscores=nx.hits(g)
-fWriter=open("hits_score.txt","w")
+hubscores,authoriescores=nx.hits(g)
+fWriter=open("hub_score.txt","w")
 for page in hubscores:
     score=hubscores[page]
-    page=page.split("cat_")[-1]
-    fWriter.write("%s\t%s\n" % (page,score))
+    if("cat_" in page):
+        page=page.split("cat_")[-1]
+        fWriter.write("%s\t%s\n" % (page,score))
 fWriter.close()
+
+fWriter2=open("authority_score.txt","w")
+for page in authoriescores:
+    score=authoriescores[page]
+    if("page_" in page):
+        page=page.split("page_")[-1]
+        fWriter2.write("%s\t%s\n" %(page,score))
+fWriter2.close()
