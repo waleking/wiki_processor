@@ -11,7 +11,7 @@ def buildGraph():
     return g
 
 def getCategories(g,node):
-    fWriter=open(node+"_successor_nodes.txt","w")
+    fWriter=open("../data/categories/"+node+"_category_nodes.txt","w")
     l=[node]
     while(len(l)>0):
         head=l.pop()

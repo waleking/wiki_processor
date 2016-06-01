@@ -1,0 +1,5 @@
+Geological_hazards
+Tsunami
+Avalanches
+Avalanche_researchers
+Avalanche_safety

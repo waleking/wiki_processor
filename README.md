@@ -37,4 +37,4 @@ usage: python successorNodes.py [node="Military"]
 
 input: rebuild_taxonomyGraph.txt
 
-output: [Military]_successor_nodes.txt
+output: ../data/category/[Military]_successor_nodes.txt
