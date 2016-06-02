@@ -45,7 +45,7 @@ def getPages(lCategories,g,topicName):
             neighbors=g.successors(category)
             for neighbor in neighbors:
                 if(neighbor not in pages):
-                    pages.add(category+"/"+neighbor)
+                    pages.add(neighbor)
     fOutName="../data/pages/"+topicName+"_pages.txt"
     fOut=open(fOutName,"w")
     for page in pages:

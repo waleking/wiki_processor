@@ -41,6 +41,7 @@ output: ../data/category/[Military]_successor_nodes.txt
 
 ####pages.py
 Find out the wiki article pages related to a specific topic such as Military, Baseball, Film and so on.  
+And this will cost 6m28.876s and 20 GB memory on server.
 
 usage: python pages.py [node="Military" | node ="All"]
     node="All" means to process all topics mentioned in ../data/categories/[node]_category_nodes.txt
@@ -48,3 +49,15 @@ usage: python pages.py [node="Military" | node ="All"]
 input: catToPageGraph.txt ( with edges category to wiki article pages), ../data/categories/[node]_category_nodes.txt
 
 output: ../data/pages/[node]_pages.txt
+
+####raw_words.py
+Find out the words related to a specific topic such as Military, Baseball, Film and so on.
+
+usage: python raw_words.py [node="Military" | node ="All"]
+    node="All" means to process all topics mentioned in ../data/pages/[node]_pages.txt
+
+input: wiki.json (with wiki article content and words in the json file), ../data/pages/[node]_pages.txt
+
+output: ../data/raw_words/[node]_raw_words.txt
+
+####[todo] total_words.py, words.py
