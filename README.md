@@ -38,3 +38,13 @@ usage: python successorNodes.py [node="Military"]
 input: rebuild_taxonomyGraph.txt
 
 output: ../data/category/[Military]_successor_nodes.txt
+
+####pages.py
+Find out the wiki article pages related to a specific topic such as Military, Baseball, Film and so on.  
+
+usage: python pages.py [node="Military" | node ="All"]
+    node="All" means to process all topics mentioned in ../data/categories/[node]_category_nodes.txt
+
+input: catToPageGraph.txt ( with edges category to wiki article pages), ../data/categories/[node]_category_nodes.txt
+
+output: ../data/pages/[node]_pages.txt
