@@ -2,6 +2,10 @@
 ##Additional Scripts
 Run with the following order: compute_hits.py, compute_pagerank.py
 
+####**todo,to check** runInBatch.sh
+Run all the python scripts from successorNodes.py to finalWords.py in batch.
+The final result is stored in data/final_words/.*_final_words.txt
+
 ####compute_hits.py
 Compute HITS score of categories according to the edges from categories to pages. And this HITS score are used as prior knowledge in page rank computing.
 

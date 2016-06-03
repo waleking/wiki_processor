@@ -24,6 +24,12 @@ def getCategories(g,node):
     fWriter.close()
 
 
+def loadTopicNames(filename):
+    l=[]
+    for line in open(filename,"r"):
+        l.append(line.strip())
+    return l
+
 
 if __name__=="__main__":
     if len(sys.argv) != 2:
@@ -33,5 +39,12 @@ if __name__=="__main__":
     else:
         #node="Military"
         node=sys.argv[1]
-        g=buildGraph()
-        getCategories(g,node)
+        if(node!="All"):
+            g=buildGraph()
+            getCategories(g,node)
+        else:
+            g=buildGraph()
+            #todo load topicnames.txt
+            topicNames=loadTopicNames("topicnames.txt")
+            for topicName in topicNames:
+                getCategories(g,topicName)
