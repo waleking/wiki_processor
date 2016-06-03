@@ -70,6 +70,14 @@ usage: python total_words.py
 
 input: wiki.json
 
-output: ../data/raw_words/all.txt
+output: ../data/raw_words/total_raw_words.txt
 
-####[todo] words.py
+#### chi2.py
+Do feature selection by chi square method.
+
+usage: python chi2.py [node="Military" | node ="All"]
+    node="All" means to process all topics mentioned in ../data/pages/[node]_pages.txt
+
+input: ../data/raw_words/total_raw_words.txt (word frequencies from all wiki articles content and words in the json file), ../data/raw_words/[node]_raw_words.txt
+
+output: ../data/features/[node]_features.txt (word \t chi2 statistics) and ../data/words/[node]_words.txt (word \t score, score=inner production(freq, chi2 statistics))
