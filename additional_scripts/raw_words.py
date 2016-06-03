@@ -21,6 +21,20 @@ def extractCategoryNames(files):
     return categoryNames
 
 
+def listFileChunks():
+    '''to known the file chunks of wiki.json.*
+    return a list like [wiki.json.aa, wiki.json.ab,...]
+    '''
+    chunks=[]
+    files=listFiles(".")
+    for filename in files:
+        matchObj=re.match(r"./wiki.json.(.*)",filename)
+        if(matchObj):
+            chunks.append(matchObj.group())
+    return chunks
+
+
+
 def loadPages(filename):
     s=set()
     for line in open(filename,"r"):
@@ -39,8 +53,21 @@ def loadJsons(filename):
     return l
 
 
+def initTopicVec(topicvecFilename):
+    if(os.path.isfile(topicvecFilename)==False):
+        return dict()
+    else:
+        topicVec=dict()
+        f=open(topicvecFilename,"r")
+        for line in f.readlines():
+            word,freq=line.strip().split("\t")
+            topicVec[word]=int(freq)
+        return topicVec
+
+
 def getWords(sPages,wikijsons,topicName):
-    topicVec=dict()
+    topicvecFilename="../data/raw_words/"+topicName+"_raw_words.txt"
+    topicVec=initTopicVec(topicvecFilename)
     for wikijson in wikijsons:
         title="_".join(wikijson["title"].split(" "))
         if(title in sPages):
@@ -50,7 +77,7 @@ def getWords(sPages,wikijsons,topicName):
                     topicVec[word]=docVec[word]
                 else:
                     topicVec[word]=topicVec[word]+docVec[word]
-    fOutName="../data/raw_words/"+topicName+"_raw_words.txt"
+    fOutName=topicvecFilename
     fOut=open(fOutName,"w")
     #sort topicVec by word frequencies in descending order
     sortedTopicVec=sorted(topicVec.items(),key=itemgetter(1),reverse=True)
@@ -73,6 +100,15 @@ def process(wikijsons,categoryName):
     getWords(sPages,wikijsons,categoryName)
 
 
+def delRawWordsTxt(files):
+    '''delete the existed ../data/raw_words/[node]_raw_words.txt
+    '''
+    for filename in files:
+        filename="../data/raw_words/%s_raw_words.txt" % filename
+        if(os.path.isfile(filename)):
+            os.remove(filename)
+
+
 if __name__=="__main__":
     if len(sys.argv) != 2:
         print("please input path")
@@ -86,15 +122,26 @@ if __name__=="__main__":
         sys.setdefaultencoding('utf-8')
 
         node=sys.argv[1]
-        #load wiki.json
-        wikijsons=loadJsons("wiki.json")
+        chunks=listFileChunks()
+        print(chunks)
 
         if(node != "All"):
+            #clean ../data/raw_words/[node]_raw_words.txt
             categoryName=node
-            process(wikijsons,categoryName)
+            delRawWordsTxt([node])
+            #update ../data/raw_words/[node]_raw_words.txt
+            for chunk in chunks:
+                #load wiki.json.**
+                wikijsons=loadJsons(chunk)
+                process(wikijsons,categoryName)
         else:
-            pass
             files=listFiles("../data/pages/")
+            #clean ../data/raw_words/[node]_raw_words.txt
             categoryNames=extractCategoryNames(files)
-            for topicName in categoryNames:
-                process(wikijsons,topicName)
+            delRawWordsTxt(categoryNames)
+            #update ../data/raw_words/[node]_raw_words.txt
+            for chunk in chunks:
+                #load wiki.json.**
+                wikijsons=loadJsons(chunk)
+                for topicName in categoryNames:
+                    process(wikijsons,topicName)
