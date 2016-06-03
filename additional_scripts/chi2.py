@@ -29,7 +29,6 @@ def getFeatures(dAllWords,dTopicWords,topicName):
     totalInTopic=dTopicWords["TOTAL"]
     totalInAll=dAllWords["TOTAL"]
     n=totalInTopic+totalInAll
-    allChi2score=0.0
     for word in dTopicWords:
         #
         # |             | candidate word t | other words |
@@ -43,7 +42,6 @@ def getFeatures(dAllWords,dTopicWords,topicName):
             c=dAllWords[word]
             d=totalInAll-c
             dChi2[word]=n*math.pow(a*d-b*c,2)/( (a+c)*(b+d)*(a+b)*(c+d)  )
-            allChi2score=allChi2score+dChi2[word]
         except Exception,e:
             print(word)
             print(e)
@@ -65,12 +63,14 @@ def getFeatures(dAllWords,dTopicWords,topicName):
     #dOutWord=inner production(dChi2,dTopicWords)
     dOutWord=dict()
     #todo only consider the words with chi2 statistics > 500
+    sumOfOutWord=0.0
     for word in  dChi2:
-        dOutWord[word]=dTopicWords[word]*dChi2[word]/allChi2score
+        dOutWord[word]=dTopicWords[word]*dChi2[word]
+        sumOfOutWord=sumOfOutWord+dOutWord[word]
     sortedOutWord=sorted(dOutWord.items(),key=itemgetter(1),reverse=True)
     for t in sortedOutWord:
         word,score=t
-        fOutWord.write("%s\t%s\n" % (word,score) )
+        fOutWord.write("%s\t%s\n" % (word,score/sumOfOutWord) )
     fOutWord.close()
     print("Write to %s" % wordFilename)
 

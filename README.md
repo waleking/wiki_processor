@@ -70,7 +70,10 @@ usage: python total_words.py
 
 input: wiki.json
 
-output: ../data/raw_words/total_raw_words.txt
+output: ../data/raw_words/total_raw_words.txt and ../data/words/total_words.txt (normalized to 1)
+
+#### normalizeTotalWords.py
+Normalize ../data/raw_words/total_raw_words.txt and get ../data/words/total_words.txt
 
 #### chi2.py
 Do feature selection by chi square method.
@@ -80,4 +83,4 @@ usage: python chi2.py [node="Military" | node ="All"]
 
 input: ../data/raw_words/total_raw_words.txt (word frequencies from all wiki articles content and words in the json file), ../data/raw_words/[node]_raw_words.txt
 
-output: ../data/features/[node]_features.txt (word \t chi2 statistics) and ../data/words/[node]_words.txt (word \t score, score=inner production(freq, chi2 statistics))
+output: ../data/features/[node]_features.txt (word \t chi2 statistics) and ../data/words/[node]_words.txt (word \t score, score=normaliztion of inner production(freq, chi2 statistics))
