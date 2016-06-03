@@ -53,7 +53,7 @@ output: ../data/pages/[node]_pages.txt
 ####raw_words.py
 Find out the words related to a specific topic such as Military, Baseball, Film and so on.
 To accelerate the processing speed, we process the dataset by chunk.
-And this will cost ? and 18 GB memory on server.
+And this will cost 16m28.517s and 14 GB memory on server.
 
 usage: python raw_words.py [node="Military" | node ="All"]
     node="All" means to process all topics mentioned in ../data/pages/[node]_pages.txt
@@ -64,6 +64,7 @@ output: ../data/raw_words/[node]_raw_words.txt
 
 #### total_words.py
 Find out the word frequencies of the whole wikipedia corpus. And the code is similar to raw_words.py
+And this will cost 10m15.843s (one pass on 5738260 lines, 17GB file, which cost wc -l command 0m3.629s on server) and 50MB memory on server.
 
 usage: python total_words.py
 
