@@ -2,8 +2,9 @@
 ##Additional Scripts
 Run with the following order: compute_hits.py, compute_pagerank.py
 
-####**todo,to check** runInBatch.sh
+#### runInBatch.sh
 Run all the python scripts from successorNodes.py to finalWords.py in batch.
+This will cost 47min7sec on 51 topics on server.
 The final result is stored in data/final_words/.*_final_words.txt
 
 ####compute_hits.py

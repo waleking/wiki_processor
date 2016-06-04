@@ -49,3 +49,5 @@ Comics
 Photography
 Harry_Potter
 Business
+Rugby_football
+Weather_hazards
