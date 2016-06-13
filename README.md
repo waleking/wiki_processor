@@ -3,7 +3,7 @@
 Run with the following order: compute_hits.py, compute_pagerank.py
 
 #### runInBatch.sh
-Run all the python scripts from successorNodes.py to finalWords.py in batch.
+Run all the python scripts from successorNodes.py to other_topic_feature.py in batch.
 This will cost 47min7sec on 51 topics on server.
 The final result is stored in data/final_words/.*_final_words.txt
 
@@ -99,3 +99,10 @@ usage: python finalWords.py [node="Military" | node = "All"]
 input: compare ../data/words/[node]_words.txt > ../data/words/total_words.txt, also read ../data/raw_words/[node]_raw_words.txt
 
 output: ../data/final_words/[node]_final_words.txt (word \t normalized freq)
+
+#### other_topic_feature.py
+Get the features that represent other topics.
+
+input: ../data/raw_words/total_raw_words.txt, ../data/raw_words/[node]_raw_words.txt
+
+output: ../data/features/other_features.txt

@@ -19,4 +19,5 @@ python total_words.py
 python normalizeTotalWords.py
 python chi2.py All
 python finalWords.py All
+python other_topic_feature.py # output: data/features/other_features.txt
 #output: data/final_words/*_final_words.txt
